@@ -14,7 +14,7 @@ router.get("/all-count", async (req, res) => {
     const totalEmployees = employee.length;
     const activeTask = 54;
     const data = { totalEmployees, activeTask, totalClients, totalProjects };
-    res.status(500).json(data);
+    res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
   }
