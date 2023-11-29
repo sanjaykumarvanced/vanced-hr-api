@@ -8,7 +8,7 @@ const removeImage = require("../../helpers/deleteImage/deleteImage");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    cb(null, "public/uploads/");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "-" + file.originalname);
