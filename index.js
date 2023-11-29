@@ -12,7 +12,7 @@ const path = require('path');
 require("./db/connection");
 
 
-app.get("/api/testing", async (req, res) => { res.send("Working") });
+app.get("/api/testing", async (req, res) => { res.send("Working 0.1") });
 
 // Authentication routes
 app.use("/api", routs);
