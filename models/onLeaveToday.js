@@ -1,0 +1,57 @@
+const mongoose = require("mongoose");
+
+const onLeaveTodaySchema = new mongoose.Schema({
+  employee: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Employee",
+    required: true,
+  },
+  image: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Image",
+    required: true,
+  },
+  startDate: {
+    type: Date,
+    required: true,
+  },
+  endDate: {
+    type: Date,
+    required: false,
+  },
+  leaveType: {
+    type: String,
+    required: true,
+  },
+  noOfDays: {
+    type: Number,
+    required: true,
+  },
+  reason: {
+    type: String,
+    required: true,
+  },
+  notify: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  approvedBy: {
+    employer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Employee",
+    },
+    employerImage: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Image",
+    },
+  },
+  status: {
+    type: String,
+    default: "Pending",
+  },
+});
+const Leaves = mongoose.model("Leaves", onLeaveTodaySchema);
+
+module.exports = Leaves;
