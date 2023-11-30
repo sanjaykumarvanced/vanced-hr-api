@@ -23,6 +23,26 @@ const announcementSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  likes: [
+    {
+      employee: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Employee",
+        required: true,
+      },
+      image: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Image",
+        required: true,
+      },
+    },
+  ],
+ comment: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comments",
+    },
+  ],
 });
 
 const Announcement = mongoose.model("Announcement", announcementSchema);

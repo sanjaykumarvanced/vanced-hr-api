@@ -26,7 +26,6 @@ router.post("/apply-leave", async (req, res) => {
       startDate: { $lte: endDate },
       endDate: { $gte: startDate },
     });
-    console.log(overlappingLeaveRequest);
     const profile = await Image.findOne({
       user_Id: employee,
     });

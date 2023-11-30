@@ -17,6 +17,8 @@ router.post("/add-client", async (req, res) => {
       company,
       socialMedia,
       contactNumber,
+      firstName,
+      lastName,
     } = req.body;
     const existingEmail = await Client.findOne({ mail });
     if (existingEmail) {
@@ -34,6 +36,8 @@ router.post("/add-client", async (req, res) => {
       company,
       socialMedia,
       contactNumber,
+      firstName,
+      lastName,
     });
     await newClient.save();
     res.status(201).json({ message: "Client registered successfully" });

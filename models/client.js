@@ -6,6 +6,13 @@ const clientSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+  },
   mail: {
     type: String,
     required: true,

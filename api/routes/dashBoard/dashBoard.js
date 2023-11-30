@@ -20,4 +20,19 @@ router.get("/all-count", async (req, res) => {
   }
 });
 
+router.get("/new-employee", async (req, res) => {
+  try {
+    const { startDate, endDate } = req.body;
+    const employee = await Employee.find({
+      dateOfJoining: {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate),
+      },
+    });
+    res.status(200).json(employee);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+});
 module.exports = router;

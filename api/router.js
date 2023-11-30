@@ -12,6 +12,7 @@ const client = require("./routes/clientDetail/client");
 const performance = require("./routes/performance/performance");
 const announcement = require("./routes/announcement/announcement");
 const dashBoard = require("./routes/dashBoard/dashBoard");
+const comment = require("./routes/comment/comment");
 
 /**
  * @openapi
@@ -163,5 +164,6 @@ router.use("/client", client);
 router.use("/performance", performance);
 router.use("/announcement", announcement);
 router.use("/dash-board", dashBoard);
+router.use("/comment", comment);
 
 module.exports = router;

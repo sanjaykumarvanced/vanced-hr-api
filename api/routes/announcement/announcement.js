@@ -39,6 +39,22 @@ router.get("/list", async (req, res) => {
       .populate({
         path: "employee",
         select: "userName designation employeeId firstName lastName",
+      })
+      .populate({
+        path: "likes.image",
+        select: "path",
+      })
+      .populate({
+        path: "likes.employee",
+        select: "userName designation employeeId firstName lastName",
+      })
+      .populate({
+        path: "comment",
+        populate: {
+          path: "employee image",
+          select: "userName designation employeeId firstName lastName path",
+        },
+        select: "text date",
       });
     const announcementDetail = announcement.map(async (val, idx) => {
       const user_Id = val._id;
@@ -57,9 +73,14 @@ router.get("/list", async (req, res) => {
 router.delete("/delete/:id", async (req, res) => {
   try {
     let { id } = req.params;
-    let data = await Announcement.deleteOne({ _id: id });
+    const announcement = await Announcement.find({});
+    const commentIds = announcement.comment;
+    if (commentIds.length > 0) {
+      await Comment.deleteMany({ _id: { $in: commentIds } });
+    }
+    await Announcement.deleteOne({ _id: id });
     await removeImage(id);
-    res.send(data);
+    res.status(200).json({ message: "Post deleted successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Something went wrong" });
@@ -80,5 +101,7 @@ router.put("/update-announcement", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+router
 
 module.exports = router;
