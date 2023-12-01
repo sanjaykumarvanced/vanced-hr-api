@@ -65,12 +65,11 @@ router.put("/update=comment", async (req, res) => {
   }
 });
 
-router.post("/like-post/:id", async (req, res) => {
+router.post("/like-post", async (req, res) => {
   try {
-    //Announcement id
-    let { id } = req.params;
+
     // imageId and employeeId
-    const { employee, image } = req.body;
+    const { employee, image, id } = req.body;
     if (!employee || !image) {
       return res.status(400).json({ message: "Bad Request" });
     }
