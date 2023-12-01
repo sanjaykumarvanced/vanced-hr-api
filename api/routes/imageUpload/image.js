@@ -54,9 +54,9 @@ router.get("/get/:id", async (req, res) => {
       return res.status(404).send("Image not found");
     }
     //const imagePath = path.join(__dirname, "..", "..", "..", image.path);
-    const imagePath = image.path;
+  
     //res.sendFile(imagePath);
-    res.status(200).json(imagePath);
+    res.status(200).json(image);
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

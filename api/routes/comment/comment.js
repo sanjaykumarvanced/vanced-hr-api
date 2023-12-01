@@ -3,10 +3,9 @@ const router = express.Router();
 const Comment = require("../../../models/comment");
 const Announcement = require("../../../models/announcement");
 
-router.post("/post/:id", async (req, res) => {
+router.post("/post", async (req, res) => {
   try {
-    const { employee, image, text } = req.body;
-    let { id } = req.params;
+    const { employee, image, text, id } = req.body;
     if (!employee || !image || !text) {
       return res.status(400).json({ message: "Bad Request" });
     }
@@ -70,7 +69,7 @@ router.post("/like-post/:id", async (req, res) => {
   try {
     //Announcement id
     let { id } = req.params;
-    // imageId and employeeId 
+    // imageId and employeeId
     const { employee, image } = req.body;
     if (!employee || !image) {
       return res.status(400).json({ message: "Bad Request" });
@@ -86,7 +85,7 @@ router.post("/like-post/:id", async (req, res) => {
     if (!existingLike) {
       await Announcement.findByIdAndUpdate(
         id,
-        { $push: { likes: { employee, image }} },
+        { $push: { likes: { employee, image } } },
         { new: true }
       );
       res.status(200).json({ message: "Like added" });
