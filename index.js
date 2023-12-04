@@ -21,10 +21,10 @@ app.get("/api/testing", async (req, res) => { res.send("Working 0.1") });
 app.use("/api", routs);
 
 // Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(express.static("../public"));
-// app.use("/public", express.static("./public"));
+app.use("/public", express.static("./public"));
 
 app.listen(PORT, () => {
   console.log("Server is running..." + PORT)

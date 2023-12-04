@@ -8,7 +8,7 @@ const removeImage = require("../../helpers/deleteImage/deleteImage");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/uploads/");
+    cb(null, "public/");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "-" + file.originalname);
@@ -54,7 +54,7 @@ router.get("/get/:id", async (req, res) => {
       return res.status(404).send("Image not found");
     }
     //const imagePath = path.join(__dirname, "..", "..", "..", image.path);
-  
+
     //res.sendFile(imagePath);
     res.status(200).json(image);
   } catch (error) {
