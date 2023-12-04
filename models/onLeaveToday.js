@@ -19,6 +19,15 @@ const onLeaveTodaySchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  startTime: {
+    type: String,
+  },
+  endTime: {
+    type: String,
+  },
+  durations: {
+    type: String,
+  },
   leaveType: {
     type: String,
     required: true,

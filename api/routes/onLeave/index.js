@@ -18,6 +18,9 @@ router.post("/apply-leave", async (req, res) => {
       notify,
       approvedBy,
       status,
+      startTime,
+      endTime,
+      durations
     } = req.body;
 
     // Check if the user already has a leave request overlapping with the new dates
@@ -49,6 +52,9 @@ router.post("/apply-leave", async (req, res) => {
       notify,
       approvedBy,
       status,
+      startTime,
+      endTime,
+      durations
     });
 
     await newLeave.save();
