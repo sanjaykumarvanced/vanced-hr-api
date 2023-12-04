@@ -38,12 +38,10 @@ const onLeaveTodaySchema = new mongoose.Schema({
   },
   reason: {
     type: String,
-    required: true,
   },
   notify: [
     {
       type: String,
-      required: true,
     },
   ],
   approvedBy: {
