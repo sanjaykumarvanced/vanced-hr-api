@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Announcement = require("../../../models/announcement");
 const Image = require("../../../models/image");
+const Comment = require("../../../models/comment");
 const removeImage = require("../../helpers/deleteImage/deleteImage");
 
 router.post("/add", async (req, res) => {
@@ -73,7 +74,7 @@ router.get("/list", async (req, res) => {
 router.delete("/delete/:id", async (req, res) => {
   try {
     let { id } = req.params;
-    const announcement = await Announcement.find({});
+    const announcement = await Announcement.findOne({ _id: id });
     const commentIds = announcement.comment;
     if (commentIds.length > 0) {
       await Comment.deleteMany({ _id: { $in: commentIds } });
@@ -102,6 +103,5 @@ router.put("/update-announcement", async (req, res) => {
   }
 });
 
-router
 
 module.exports = router;
