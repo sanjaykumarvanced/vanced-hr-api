@@ -20,7 +20,7 @@ router.post("/apply-leave", async (req, res) => {
       status,
       startTime,
       endTime,
-      durations
+      durations,
     } = req.body;
 
     // Check if the user already has a leave request overlapping with the new dates
@@ -35,7 +35,7 @@ router.post("/apply-leave", async (req, res) => {
     const profileId = profile._id;
     if (overlappingLeaveRequest) {
       return res
-        .status(200)
+        .status(400)
         .json({ message: "Leave request overlaps with existing leave" });
     }
 
@@ -54,7 +54,7 @@ router.post("/apply-leave", async (req, res) => {
       status,
       startTime,
       endTime,
-      durations
+      durations,
     });
 
     await newLeave.save();
@@ -144,7 +144,7 @@ router.get("/all-leaves/:id", async (req, res) => {
       });
     const leavesByYear = leaveData.filter((leave) => {
       const leaveYear = new Date(leave.startDate).getFullYear();
-      return leaveYear 
+      return leaveYear;
       //=== currentYear;
     });
     res.status(200).json(leavesByYear);
@@ -359,7 +359,7 @@ router.put("/update-leave", async (req, res) => {
     });
     if (overlappingLeaveRequest) {
       return res
-        .status(200)
+        .status(400)
         .json({ message: "Leave request overlaps with existing leave" });
     }
     await Leaves.findByIdAndUpdate(
