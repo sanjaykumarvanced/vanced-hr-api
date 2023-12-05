@@ -330,7 +330,7 @@ router.put("/status-update", async (req, res) => {
       { $set: updatedFields },
       { new: true, upsert: true }
     );
-    res.status(200).send("Leave updated successfully!");
+    res.status(200).send({ message: "Leave updated successfully!" });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -367,7 +367,7 @@ router.put("/update-leave", async (req, res) => {
       { $set: updatedFields },
       { new: true, upsert: true }
     );
-    res.status(200).send("Leave detail updated successfully!");
+    res.status(200).send({ message: "Leave detail updated successfully!" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Something went wrong" });
