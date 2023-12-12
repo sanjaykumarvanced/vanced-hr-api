@@ -7,6 +7,7 @@ const Employee = require("../../../models/employee");
 const Image = require("../../../models/image");
 const config = require("../../../config");
 const { JWT_SECRET } = config;
+const removeImage = require("../../helpers/deleteImage/deleteImage");
 
 const router = express.Router();
 const saltRounds = 10;
@@ -76,7 +77,7 @@ router.post("/add-employee", async (req, res) => {
   }
 });
 
-router.post("/update-employee", async (req, res) => {
+router.put("/update-employee", async (req, res) => {
   try {
     const updatedFields = req.body;
     await Employee.findByIdAndUpdate(

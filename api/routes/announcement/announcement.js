@@ -57,6 +57,7 @@ router.get("/list", async (req, res) => {
         },
         select: "text date",
       });
+    //announcement.sort((a, b) => b.date - a.date);
     const announcementDetail = announcement.map(async (val, idx) => {
       const user_Id = val._id;
       const clientImg = usersImg.find((elm) => elm.user_Id.equals(user_Id));
@@ -102,6 +103,5 @@ router.put("/update-announcement", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-
 
 module.exports = router;
