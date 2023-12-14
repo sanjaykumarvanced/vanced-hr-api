@@ -42,7 +42,8 @@ router.post("/add-employee", async (req, res) => {
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-
+    const result = email.substring(0, email.indexOf("@"));
+    const empId = `${result}${"@vanced"}`;
     // Create a new user
     const newUser = new Employee({
       userName,
@@ -53,7 +54,7 @@ router.post("/add-employee", async (req, res) => {
       designation,
       address,
       gender,
-      employeeId,
+      employeeId: empId,
       dateOfJoining,
       firstName,
       lastName,
