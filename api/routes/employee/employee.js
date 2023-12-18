@@ -71,7 +71,10 @@ router.post("/add-employee", async (req, res) => {
     //   expiresIn: "1h",
     // });
 
-    res.status(201).json({ message: "Employee registered successfully" });
+    res.status(201).json({
+      message: "Employee registered successfully",
+      userId: newUser._id,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Something went wrong" });
