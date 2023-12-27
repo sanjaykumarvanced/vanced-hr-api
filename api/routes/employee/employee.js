@@ -84,7 +84,9 @@ router.post("/add-employee", async (req, res) => {
 router.put("/update-employee", async (req, res) => {
   try {
     const password = req?.body?.password;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const hashedPassword = password
+      ? await bcrypt.hash(password, saltRounds)
+      : "";
     const updatedFields = password
       ? { ...req.body, password: hashedPassword }
       : req.body;
