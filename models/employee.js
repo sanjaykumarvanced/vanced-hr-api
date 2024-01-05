@@ -41,7 +41,6 @@ const employeeSchema = new mongoose.Schema({
   lastName: {
     type: String,
   },
-  profileImageURL: String,
   personalInformation: {
     telephones: [
       {
@@ -112,8 +111,7 @@ const employeeSchema = new mongoose.Schema({
         type: String,
       },
       endYear: {
-        type: String
-        ,
+        type: String,
       },
     },
   ],
@@ -133,7 +131,6 @@ const employeeSchema = new mongoose.Schema({
       },
     },
   ],
-  profileImageURL: String,
 });
 
 const Employee = mongoose.model("Employee", employeeSchema);

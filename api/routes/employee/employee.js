@@ -23,7 +23,6 @@ router.post("/add-employee", async (req, res) => {
       designation,
       address,
       gender,
-      employeeId,
       dateOfJoining,
       firstName,
       lastName,

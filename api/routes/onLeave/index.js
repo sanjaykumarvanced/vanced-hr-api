@@ -312,6 +312,24 @@ router.get("/requested/:id", async (req, res) => {
   }
 });
 
+router.get("/all-requested-leaves", async (req, res) => {
+  try {
+    const leaveData = await Leaves.find({})
+      .populate({
+        path: "employee",
+        select: "userName designation employeeId firstName lastName",
+      })
+      .populate({
+        path: "approvedBy.employer",
+        select: "userName designation employeeId firstName lastName",
+      });
+    res.status(200).json(leaveData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 router.put("/status-update", async (req, res) => {
   try {
     const userId = req.body.id;
