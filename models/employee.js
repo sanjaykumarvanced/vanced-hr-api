@@ -109,10 +109,11 @@ const employeeSchema = new mongoose.Schema({
         type: String,
       },
       startYear: {
-        type: Number,
+        type: String,
       },
       endYear: {
-        type: Number,
+        type: String
+        ,
       },
     },
   ],
