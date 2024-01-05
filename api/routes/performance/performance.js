@@ -64,4 +64,32 @@ router.get("/all-performance", async (req, res) => {
   }
 });
 
+router.put("/update-performance", async (req, res) => {
+  try {
+    const updatedFields = req.body;
+    await Performance.findByIdAndUpdate(
+      { _id: req.body.id },
+      { $set: updatedFields },
+      { new: true, upsert: true }
+    );
+    res.status(200).send("Performance detail updated successfully!");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+});
+
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    let deleted = await Performance.deleteOne({ _id: id });
+    res
+      .status(200)
+      .send({ message: "Performance deleted successfully!", deleted });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+});
+
 module.exports = router;
