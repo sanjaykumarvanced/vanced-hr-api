@@ -39,7 +39,7 @@ router.get("/all-performance", async (req, res) => {
     const feedback = await Performance.find(query)
       .populate({
         path: "employee",
-        select: "userName",
+        select: "userName designation employeeId firstName lastName",
       })
       .populate({
         path: "employeeImage",
@@ -47,7 +47,7 @@ router.get("/all-performance", async (req, res) => {
       })
       .populate({
         path: "addedBy",
-        select: "userName",
+        select: "userName designation employeeId firstName lastName",
       })
       .populate({
         path: "addedByImage",
