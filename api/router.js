@@ -13,6 +13,7 @@ const performance = require("./routes/performance/performance");
 const announcement = require("./routes/announcement/announcement");
 const dashBoard = require("./routes/dashBoard/dashBoard");
 const comment = require("./routes/comment/comment");
+const promotion= require("./routes/promotion")
 
 /**
  * @openapi
@@ -165,5 +166,6 @@ router.use("/performance", performance);
 router.use("/announcement", announcement);
 router.use("/dash-board", dashBoard);
 router.use("/comment", comment);
+router.use("/promotion",promotion)
 
 module.exports = router;
