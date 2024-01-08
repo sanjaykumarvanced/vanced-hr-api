@@ -1,27 +1,9 @@
 const mongoose = require("mongoose");
 const projectSchema = new mongoose.Schema({
-  teamLeader: {
-    id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Employee",
-    },
-    image: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Image",
-    },
+  team: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Teams",
   },
-  team: [
-    {
-      id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Employee",
-      },
-      image: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Image",
-      },
-    },
-  ],
   client: {
     id: {
       type: mongoose.Schema.Types.ObjectId,

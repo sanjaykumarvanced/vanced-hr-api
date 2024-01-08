@@ -6,7 +6,6 @@ const Image = require("../../../models/image");
 router.post("/add-details", async (req, res) => {
   try {
     const {
-      teamLeader,
       team,
       client,
       projectName,
@@ -19,7 +18,6 @@ router.post("/add-details", async (req, res) => {
     } = req.body;
 
     const newProject = new Projects({
-      teamLeader,
       team,
       client,
       projectName,
@@ -42,12 +40,12 @@ router.get("/all-project", async (req, res) => {
   try {
     const projects = await Projects.find({})
       .populate({
-        path: "teamLeader.id",
-        select: "userName designation employeeId firstName lastName",
-      })
-      .populate({
-        path: "teamLeader.image",
-        select: "path",
+        path: "team",
+        select: "teamLeader teamMember projectName status createdAt",
+        populate: {
+          path: "teamLeader.id teamMember.id teamLeader.image teamMember.image",
+          select: "userName mail  firstName lastName path",
+        },
       })
       .populate({
         path: "client.id",
@@ -56,15 +54,8 @@ router.get("/all-project", async (req, res) => {
       .populate({
         path: "client.image",
         select: "path",
-      })
-      .populate({
-        path: "team.id",
-        select: "userName designation employeeId firstName lastName",
-      })
-      .populate({
-        path: "team.image",
-        select: "path",
       });
+
     res.status(200).json(projects);
   } catch (error) {
     console.error(error);
