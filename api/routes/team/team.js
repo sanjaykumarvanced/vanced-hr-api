@@ -74,7 +74,7 @@ router.get("/all-team", async (req, res) => {
   }
 });
 
-router.put("update-team", async (req, res) => {
+router.put("/update-team", async (req, res) => {
   try {
     const updatedFields = req.body;
     await Team.findOneAndUpdate(
