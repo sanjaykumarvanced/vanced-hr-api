@@ -51,7 +51,8 @@ router.get("/all-team", async (req, res) => {
     const users = await Team.find({})
       .populate({
         path: "teamLeader.id",
-        select: "userName designation employeeId firstName lastName",
+        select:
+          "userName designation employeeId firstName lastName email personalInformation.telephones",
       })
       .populate({
         path: "teamLeader.image",
@@ -59,7 +60,8 @@ router.get("/all-team", async (req, res) => {
       })
       .populate({
         path: "teamMember.id",
-        select: "userName designation employeeId firstName lastName",
+        select:
+          "userName designation employeeId firstName lastName email personalInformation.telephones",
       })
       .populate({
         path: "teamMember.image",
@@ -69,6 +71,32 @@ router.get("/all-team", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
+  }
+});
+
+router.put("update-team", async (req, res) => {
+  try {
+    const updatedFields = req.body;
+    await Team.findOneAndUpdate(
+      { _id: req.body.id },
+      { $set: updatedFields },
+      { new: true, upsert: true }
+    );
+    res.status(200).send("Team detail updated successfully!");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+router.delete("/team-delete/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    let deleted = await Team.deleteOne({ _id: id });
+    res.status(200).send({ message: "Team deleted successfully!", deleted });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Something went wrong" });
   }
 });
 
