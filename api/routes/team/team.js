@@ -16,12 +16,8 @@ router.post("/create-team", async (req, res) => {
 router.get("/my-team/:id", async (req, res) => {
   try {
     const userId = req.params.id;
-    const users = await Team.find({
-      teamMember: {
-        $elemMatch: {
-          id: userId,
-        },
-      },
+    const teams = await Team.find({
+      $or: [{ "teamLeader.id": userId }, { "teamMember.id": userId }],
     })
       .populate({
         path: "teamLeader.id",
@@ -39,7 +35,7 @@ router.get("/my-team/:id", async (req, res) => {
         path: "teamMember.image",
         select: "path",
       });
-    res.status(200).json(users);
+    res.status(200).json(teams);
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
