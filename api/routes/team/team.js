@@ -4,8 +4,8 @@ const Team = require("../../../models/team");
 
 router.post("/create-team", async (req, res) => {
   try {
-    const { teamLeader, teamMember, status, project } = req.body;
-    const newTeam = new Team({ teamLeader, teamMember, status, project });
+    const { teamLeader, teamMember, status, teamName } = req.body;
+    const newTeam = new Team({ teamLeader, teamMember, status, teamName });
     await newTeam.save();
     res.status(201).json({ message: "Team created successfully" });
   } catch (error) {

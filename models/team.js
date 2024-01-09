@@ -22,7 +22,7 @@ const teamSchema = new mongoose.Schema({
       },
     },
   ],
-  projectName: {
+  teamName: {
     type: String,
     required: true,
   },
