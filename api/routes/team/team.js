@@ -21,7 +21,7 @@ router.get("/my-team/:id", async (req, res) => {
     })
       .populate({
         path: "teamLeader.id",
-        select: "userName designation employeeId firstName lastName",
+        select: "userName designation employeeId firstName lastName email personalInformation.telephones",
       })
       .populate({
         path: "teamLeader.image",
@@ -29,7 +29,7 @@ router.get("/my-team/:id", async (req, res) => {
       })
       .populate({
         path: "teamMember.id",
-        select: "userName designation employeeId firstName lastName",
+        select: "userName designation employeeId firstName lastName email personalInformation.telephones",
       })
       .populate({
         path: "teamMember.image",
