@@ -15,6 +15,7 @@ const dashBoard = require("./routes/dashBoard/dashBoard");
 const comment = require("./routes/comment/comment");
 const promotion = require("./routes/promotion");
 const resignation = require("./routes/employeeResignation");
+const termination = require("./routes/termination");
 
 /**
  * @openapi
@@ -169,5 +170,6 @@ router.use("/dash-board", dashBoard);
 router.use("/comment", comment);
 router.use("/promotion", promotion);
 router.use("/resignation", resignation);
+router.use("/termination", termination);
 
 module.exports = router;
